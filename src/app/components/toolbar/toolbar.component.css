@@ -1,0 +1,13 @@
+.links{
+    color: white;
+    margin: 0 1em 0 1em;
+}
+
+.links:hover{
+    color: rgba(255,255,255,0.5);
+}
+
+.btn-danger{
+    position: absolute;
+    right: 1em;
+}

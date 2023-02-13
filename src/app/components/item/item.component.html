@@ -1,0 +1,16 @@
+<app-toolbar></app-toolbar>
+<div class="content" role="main">
+    <app-spinner [show]="loading"></app-spinner>
+    <button type="button" class="btn btn-primary" (click)="goBack()" *ngIf="!loading"> 
+        <mat-icon>keyboard_backspace</mat-icon> Back
+    </button>
+    <div class="row" *ngIf="item != undefined">
+        <div class="col-md-12">
+            <b>Title:</b> {{item.title}}
+            <br/>
+            <b class="ml-1">Completed:</b> 
+            <span class="badge bg-success" *ngIf="item.completed">Yes</span>
+            <span class="badge bg-danger" *ngIf="!item.completed">No</span>
+        </div>
+    </div>
+</div>

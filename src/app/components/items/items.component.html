@@ -1,0 +1,45 @@
+<app-toolbar></app-toolbar>
+<div class="content" role="main">
+    <app-spinner [show]="loading"></app-spinner>
+    <table class="table table-striped" *ngIf="!loading">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col" class="text-center">Completed?</th>
+                <th scope="col" class="text-center">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of showData">
+                <th scope="row">{{ d.id }}</th>
+                <td>
+                    {{ d.title }}
+                </td>
+                <td class="text-center">
+                    <span class="badge bg-success" *ngIf="d.completed">Yes</span>
+                    <span class="badge bg-danger" *ngIf="!d.completed">No</span>
+                </td>
+                <td class="text-center">
+                    <a href="javascript:void(0)" (click)="goToItem(d)">
+                        <mat-icon>assignment</mat-icon>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="d-flex justify-content-between p-2" *ngIf="!loading">
+        <ngb-pagination
+            [collectionSize]="collectionSize"
+            [(page)]="page"
+            [pageSize]="pageSize"
+            (pageChange)="refreshData()"
+        >
+        </ngb-pagination>
+
+        <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshData()">
+            <option [ngValue]="i" *ngFor="let i of [20, 50, 100, 200]">{{i}} items per page</option>
+        </select>
+    </div>
+</div>
